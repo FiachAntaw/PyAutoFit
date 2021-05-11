@@ -9,7 +9,7 @@ import numpy as np
 from autofit.mapper.model import ModelInstance
 from autofit.mapper.model_mapper import ModelMapper
 from autofit.mapper.prior_model.abstract import AbstractPriorModel
-from autofit.non_linear.mcmc.auto_correlations import AutoCorrelations, AutoCorrelationsSettings
+from autofit.non_linear.mcmc.auto_correlations import AutoCorrelationsSettings
 
 
 class Sample:
