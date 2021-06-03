@@ -1,4 +1,3 @@
-import configparser
 import logging
 
 from autoconf import conf
@@ -73,16 +72,16 @@ def format_string_for_parameter_name(parameter_name: str) -> str:
     try:
         # noinspection PyProtectedMember
         for key, value in sorted(
-            label_conf["format"].items(),
-            key=lambda item: len(item[0]),
-            reverse=True,
+                label_conf["format"].items(),
+                key=lambda item: len(item[0]),
+                reverse=True,
         ):
             if key in parameter_name:
                 return value
     except KeyError:
         pass
 
-    logger.warning(
+    logger.debug(
         "Could not find an entry for the parameter {} in the label_format.ini config at path {}".format(
             parameter_name, conf.instance.paths
         )
@@ -92,7 +91,6 @@ def format_string_for_parameter_name(parameter_name: str) -> str:
 
 
 def convert_name_to_label(parameter_name, name_to_label):
-
     if not name_to_label:
         return parameter_name
 
@@ -101,7 +99,7 @@ def convert_name_to_label(parameter_name, name_to_label):
     try:
         return label_conf["label"][parameter_name]
     except KeyError:
-        logger.warning(
+        logger.debug(
             "Could not find an entry for the parameter {} in the label_format.iniconfig at paths {}".format(
                 parameter_name, conf.instance.paths
             )
@@ -114,9 +112,8 @@ def add_whitespace(str0, str1, whitespace):
 
 
 def value_result_string_from(
-    parameter_name, value, values_at_sigma=None, unit=None, format_string=None
+        parameter_name, value, values_at_sigma=None, unit=None, format_string=None
 ):
-
     format_str = format_string or format_string_for_parameter_name(parameter_name)
     value = format_str.format(value)
 
@@ -134,15 +131,14 @@ def value_result_string_from(
 
 
 def parameter_result_latex_from(
-    parameter_name,
-    value,
-    errors=None,
-    subscript=None,
-    unit=None,
-    format_string=None,
-    name_to_label=False,
+        parameter_name,
+        value,
+        errors=None,
+        subscript=None,
+        unit=None,
+        format_string=None,
+        name_to_label=False,
 ):
-
     format_str = format_string or format_string_for_parameter_name(parameter_name)
     value = format_str.format(value)
 
