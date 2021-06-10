@@ -156,7 +156,7 @@ class SneakyProcess(Process):
                 self.queue.put(e)
         self.logger.debug("terminating process {}".format(self.name))
         self.job_queue.close()
-        pr.dump_stats(f"sneaky_{self.pid}.prof")
+        pr.dump_stats(f"/home/dc-nigh1/profiling/sneaky_{self.pid}.prof")
         pr.disable()
 
 
