@@ -132,6 +132,9 @@ class SneakyProcess(Process):
         The process continues to execute until a StopCommand is passed.
         This occurs when the SneakyMap goes out of scope.
         """
+        import cProfile
+        pr = cProfile.Profile()
+        pr.enable()
 
         self._init()
         self.logger.debug("starting")
@@ -153,6 +156,8 @@ class SneakyProcess(Process):
                 self.queue.put(e)
         self.logger.debug("terminating process {}".format(self.name))
         self.job_queue.close()
+        pr.dump_stats(f"sneaky_{self.pid}.prof")
+        pr.disable()
 
 
 class SneakyPool:
