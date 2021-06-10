@@ -10,7 +10,7 @@ from .process import AbstractJob, Process, StopCommand
 logger = logging.getLogger(
     __name__
 )
-
+import cProfile
 
 def _is_likelihood_function(
         function
@@ -132,7 +132,7 @@ class SneakyProcess(Process):
         The process continues to execute until a StopCommand is passed.
         This occurs when the SneakyMap goes out of scope.
         """
-        import cProfile
+
         pr = cProfile.Profile()
         pr.enable()
 
